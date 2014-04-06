@@ -1,0 +1,28 @@
+@(boards: List[Board], boardForm: Form[Board], user: User)
+
+@import helper._
+
+@main("Welcome to FreeBoards", section="board", user) {
+
+    <h1>@boards.size() board(s)</h1>
+    
+    <ul>
+        @for(board <- boards) {
+            <li>
+                <a href="@routes.Boards.board(board.boardId, board.boardTitle)">@board.boardTitle</a> by @board.boardOwnerName
+                
+            </li>
+        }
+    </ul>
+    
+    <h2>Add a new board</h2>
+    
+    @form(routes.Boards.newBoard()) {
+        
+        @inputText(boardForm("boardTitle"))
+        <input type="submit" value="Create">
+        
+    }
+    
+ 
+}

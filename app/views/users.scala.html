@@ -1,0 +1,29 @@
+@(users: List[User], userForm: Form[User], user: User)
+
+@import helper._
+
+@main("Welcom to FreeBoards", section="users", user) {
+    
+    <h1>@users.size() user(s)</h1>
+    
+    <ul>
+        @for(user <- users) {
+            <li>
+                @user.name
+                
+            </li>
+        }
+    </ul>
+    
+    <h2>Add a new user</h2>
+    
+    @form(routes.Dashboard.newUser()) {
+        
+        @inputText(userForm("email")) 
+        @inputText(userForm("name")) 
+        @inputText(userForm("password")) 
+        <input type="submit" value="Create">
+        
+    }
+    
+}

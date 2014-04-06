@@ -1,0 +1,10 @@
+
+# Users
+
+users:
+
+    - !!models.User
+        email:      test@sample.com
+        name:       Test User
+        password:   $2a$10$LpNgCrhNDvuPxPTVu0KBEeyj/.VGnvkQBzvR91UxzoTTJQq2ZLyZ2
+

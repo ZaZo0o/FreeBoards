@@ -1,0 +1,27 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.at(path="/public", file)
+
+# Authentication
+GET     /login                              controllers.Application.login()
+POST    /login                              controllers.Application.authenticate()
+GET     /logout                             controllers.Application.logout()
+
+# Home page
+GET     /                           controllers.Dashboard.index()
+POST    /                           controllers.Boards.newBoard()
+
+# Boars
+GET     /board/:boardTitle:boardId       controllers.Boards.board(boardId: Long, boardTitle: String)
+POST    /board/:boardId/update       controllers.Boards.updateBoard(boardId: Long)
+
+# Users
+GET     /users                  controllers.Dashboard.users()
+POST    /users                  controllers.Dashboard.newUser()
+
+#My Account
+GET     /MyAccount                  controllers.Dashboard.myAccount()

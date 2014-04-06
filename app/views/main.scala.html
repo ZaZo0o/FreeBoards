@@ -1,0 +1,52 @@
+@(title: String, section: String = "", user: User)(content: Html)
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>@title</title>
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
+<link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/jquery-ui.css")">
+        <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
+		<script src="@routes.Assets.at("javascripts/jquery-1.8.2.js")" type="text/javascript"></script>
+		<script src="@routes.Assets.at("javascripts/jquery-ui-1.9.0.custom.js")" type="text/javascript"></script>
+		<script src="@routes.Assets.at("javascripts/jquery.qtip-1.0.0-rc3.min.js")" type="text/javascript"></script>
+<script src="@routes.Assets.at("javascripts/livequery.js")" type="text/javascript"> </script>
+    </head>
+    <body>
+
+@mainNavigationItems = @{Seq(
+	("home", "Dashboard", routes.Dashboard.index),
+	("users", "User List", routes.Dashboard.users),
+	("myAccount", "My Account", routes.Dashboard.myAccount)
+)}
+
+
+
+		<div class="logout">
+			<ul class="logout">
+				<li>About FreeBoard</li>
+				<li>Logged as : <span class="name">@user.name</span></li>
+				<li><a href="@routes.Application.logout()">Logout</a></li>
+			</ul>
+		</div>
+
+			<div id="main-navigation">
+				<div class="navigation">
+					<ul class="navigation">
+						@mainNavigationItems.map{
+							case (key, item, url) if key == section => {
+								<li><a href="@url" id="active">@item</a></li>
+							}
+							case (key, item, url) => {
+							<li><a href="@url">@item</a></li>
+							}
+						}
+					</ul>
+				</div>
+			</div>
+
+
+        @content
+    </body>
+</html>
